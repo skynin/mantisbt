@@ -1,0 +1,7 @@
+base   authmantis
+author Ventzy Kunev
+email  v.kunev@gmail.com
+date   2015-03-23
+name   AuthMantis plugin
+desc   Mantis authentication integration
+url    https://www.dokuwiki.org/plugin:authmantis

@@ -79,3 +79,22 @@ $g_return_path_email    = 'admin@example.com';	# the return address for bounced 
 
 # --- Others ---
 # $g_default_home_page = 'my_view_page.php';	# Set to name of page to go to after login
+
+$t_protocol = 'http';
+$t_host = $_SERVER['SERVER_NAME'];
+
+#####################
+# Wiki Integration
+#####################
+
+# Wiki Integration Enabled?
+$g_wiki_enable = ON;
+
+# Wiki Engine
+$g_wiki_engine = 'dokuwiki';
+
+# Wiki namespace to be used as root for all pages relating to this mantis installation.
+$g_wiki_root_namespace = 'dev'; // mantis';
+
+# URL under which the wiki engine is hosted.  Must be on the same server.
+$g_wiki_engine_url = $t_protocol . '://' . $t_host . '/wiki/';

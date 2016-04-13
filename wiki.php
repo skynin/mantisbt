@@ -39,6 +39,10 @@
 	} else {
 		bug_ensure_exists( $f_id );
 		$t_url = wiki_link_bug( $f_id );
+        
+       // skynin
+       // http://mantisbt.dev/wiki/doku.php?id=dev:Desktop+Second:issue:1
+       $t_url = str_replace(':issue:', ':task:', $t_url);
 	}
 
 	print_header_redirect( $t_url, true, false, true );

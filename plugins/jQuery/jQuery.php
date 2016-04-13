@@ -22,13 +22,14 @@ class jQueryPlugin extends MantisPlugin {
 		$this->name = 'jQuery Library';
 		$this->description = 'Provides access to the jQuery library in a single dependency.';
 
-		$this->version = '1.11.1';
+		// skynin $this->version = '1.11.1'; 
+       $this->version = '1.12.2'; 
 		$this->requires = array(
 			# Plugin not needed with 1.3 (jQuery is bundled)
 			'MantisCore' => '1.2.0, < 1.3',
 		);
 
-		$this->author	= 'John Reese and MantisBT Team';
+		$this->author	= 'John Reese and MantisBT Team (&skynin)';
 		$this->contact	= 'mantisbt-dev@lists.sourceforge.net';
 		$this->url		= 'https://github.com/mantisbt-plugins/jquery';
 	}
@@ -43,7 +44,8 @@ class jQueryPlugin extends MantisPlugin {
 	 * Create the resource link to load the jQuery library.
 	 */
 	function resources( $p_event ) {
-		return '<script type="text/javascript" src="' . plugin_file( 'jquery-min.js' ) . '"></script>'.
-			'<script type="text/javascript">jQuery.noConflict();</script>';
+		// skynin return '<script type="text/javascript" src="' . plugin_file( 'jquery-min.js' ) . '"></script>'.
+        return '<script type="text/javascript" src="' . "//ajax.googleapis.com/ajax/libs/jquery/$this->version/jquery.min.js" . '"></script>'.PHP_EOL.
+			'<script type="text/javascript">jQuery.noConflict();</script>'.PHP_EOL;
 	}
 }

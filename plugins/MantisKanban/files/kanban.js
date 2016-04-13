@@ -1,5 +1,9 @@
 jQuery(document).ready(function(){
-    jQuery( ".card" ).draggable({ revert: "invalid" });
+    
+    var cardDiv = jQuery( ".card" );
+    if (cardDiv.length === 0) return;    
+    
+    cardDiv.draggable({ revert: "invalid" });
     jQuery( ".kanbanColumn" ).droppable({
         activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",

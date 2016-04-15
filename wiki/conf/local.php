@@ -9,7 +9,7 @@
 
 $conf['title'] = 'Skynin';
 $conf['lang'] = 'ru';
-$conf['license'] = 'publicdomain';
+$conf['license'] = '';
 $conf['recent_days'] = 31;
 $conf['useacl'] = 1;
 $conf['superuser'] = '@admin, @ADMINISTRATOR';
@@ -20,12 +20,3 @@ $conf['dnslookups'] = 0;
 $conf['authtype'] = 'authmantis';
 
 // end auto-generated content
-
-$pathMantis = preg_replace('/wiki.+conf/i', '', __DIR__);
-
-define( 'MANTIS_ROOT', $pathMantis );  // file path to Mantis, must terminate with /
-define( 'MANTIS_URL', $_SERVER['SERVER_NAME'] );     // url to Mantis, must terminate with /
-
-# If selecting the mantis auth backend results in fatal errors from redeclaration of utf8 functions, uncomment this:
-
-require_once( MANTIS_ROOT . 'core.php' );

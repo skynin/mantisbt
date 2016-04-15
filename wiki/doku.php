@@ -8,6 +8,16 @@
  * @global Input $INPUT
  */
 
+/* Mantis core path */
+$pathMantis = preg_replace('/wiki/i', '', __DIR__);
+
+define( 'MANTIS_ROOT', $pathMantis );  // file path to Mantis, must terminate with /
+define( 'MANTIS_URL', $_SERVER['SERVER_NAME'] );     // url to Mantis, must terminate with /
+
+# If selecting the mantis auth backend results in fatal errors from redeclaration of utf8 functions, uncomment this:
+
+require_once( MANTIS_ROOT . 'core.php' );
+
 // update message version - always use a string to avoid localized floats!
 $updateVersion = "47.1";
 

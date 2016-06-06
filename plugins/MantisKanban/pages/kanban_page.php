@@ -277,7 +277,6 @@ foreach($all_project_ids as $curr_project_id) {
     }
 
 ?>
-        </td>
     </tr>
     <tr>
 <?php

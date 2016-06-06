@@ -1,14 +1,20 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic);
+/*'Open Sans', */
+
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css);
+
 body {
 	background-color: #ffffff;
 	color: #000000;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10pt;
 	margin: 6px 4px;
 }
 
-p 					{ font-family: Verdana, Arial, Helvetica, sans-serif; }
+p 					{ font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif; }
 
-address 			{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt }
+address 			{ font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif; font-size: 8pt }
 
 pre				{ margin-top: 0px; margin-bottom: 0px; }
 
@@ -29,7 +35,7 @@ input.button-small		{ font-size: 8pt; }
 textarea			{}
 select				{}
 
-span				{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; }
+span				{ font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; }
 span.print			{ font-size: 8pt; }
 span.required 		{ font-size: 8pt; color: #bb0000; }
 span.small 			{ font-size: 8pt; font-weight: normal; }
@@ -49,7 +55,7 @@ table.width75		{ width: 75%;  border: solid 1px #000000; }
 table.width60		{ width: 60%;  border: solid 1px #000000; }
 table.width50		{ width: 50%;  border: solid 1px #000000; }
 
-td 					{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; padding: 4px; text-align: left; }
+td 					{ font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; padding: 4px; text-align: left; }
 td.center			{ text-align: center; }
 td.left				{ text-align: left; }
 td.right			{ text-align: right; }

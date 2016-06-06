@@ -237,7 +237,7 @@ function html_page_top2a() {
 	html_body_begin();
 	$g_error_send_page_header = false;
 	html_header();
-	html_top_banner();
+	// skynin html_top_banner();
 }
 
 /**
@@ -470,7 +470,7 @@ function html_top_banner() {
 			echo '<a href="', config_get( 'logo_url' ), '">';
 		}
 		$t_alternate_text = string_html_specialchars( config_get( 'window_title' ) );
-		echo '<img border="0" alt="', $t_alternate_text, '" src="' . helper_mantis_url( $t_logo_image ) . '" />';
+		echo '<img style="margin-right: 60px;" border="0" alt="', $t_alternate_text, '" src="' . helper_mantis_url( $t_logo_image ) . '" />';
 		if( $t_show_url ) {
 			echo '</a>';
 		}
@@ -493,6 +493,12 @@ function html_login_info() {
 
 	echo '<table class="hide">';
 	echo '<tr>';
+
+	// skynin
+	echo '<td style="max-width: 255px;">';
+	html_top_banner();
+	echo '</td>';
+
 	echo '<td class="login-info-left">';
 	if( current_user_is_anonymous() ) {
 		$t_return_page = $_SERVER['SCRIPT_NAME'];
@@ -535,9 +541,9 @@ function html_login_info() {
 			print_extended_project_browser( helper_get_current_project_trace() );
 		} else {
 			if( ON == config_get( 'use_javascript' ) ) {
-				echo '<select name="project_id" class="small" onchange="document.forms.form_set_project.submit();">';
+				echo '<select name="project_id" onchange="document.forms.form_set_project.submit();">';
 			} else {
-				echo '<select name="project_id" class="small">';
+				echo '<select name="project_id">';
 			}
 			print_project_option_list( join( ';', helper_get_current_project_trace() ), true, null, true );
 			echo '</select> ';
@@ -588,6 +594,46 @@ function html_bottom_banner() {
 }
 
 /**
+ * Encodes each character of the given string as either a decimal
+ * or hexadecimal entity, in the hopes of foiling most email address
+ * harvesting bots.
+ *
+ * Based on Michel Fortin's PHP Markdown:
+ *   http://michelf.com/projects/php-markdown/
+ * Which is based on John Gruber's original Markdown:
+ *   http://daringfireball.net/projects/markdown/
+ * Whose code is based on a filter by Matthew Wickline, posted to
+ * the BBEdit-Talk with some optimizations by Milian Wolff.
+ *
+ * @package Email Address Encoder
+ * @copyright 2014 Till Krüss
+ *
+ * @param string $string Text with email addresses to encode
+ * @return string $string Given text with encoded email addresses
+ */
+if (!function_exists('eae_encode_str')) {
+function eae_encode_str($string) {
+
+	$chars = str_split($string);
+	$seed = mt_rand(0, (int) abs(crc32($string) / strlen($string)));
+
+	foreach ($chars as $key => $char) {
+
+		$ord = ord($char);
+
+		if ($ord < 128) { // ignore non-ascii chars
+
+			$r = ($seed * (1 + $key)) % 100; // pseudo "random function"
+
+			if ($r > 60 && $char != '@') ; // plain character (not encoded), if not @-sign
+			else if ($r < 45) $chars[$key] = '&#x'.dechex($ord).';'; // hexadecimal
+			else $chars[$key] = '&#'.$ord.';'; // decimal (ascii)
+		}
+	}
+    return implode('', $chars);
+}
+}
+/**
  * (13) Print the page footer information
  * @param string $p_file
  * @return null
@@ -624,7 +670,7 @@ function html_footer( $p_file = null ) {
 
 	# only display webmaster email is current user is not the anonymous user
 	if( !is_page_name( 'login_page.php' ) && auth_is_user_authenticated() && !current_user_is_anonymous() ) {
-		echo "\t", '<address><a href="mailto:', config_get( 'webmaster_email' ), '">', config_get( 'webmaster_email' ), '</a></address>', "\n";
+		echo "\t", '<address><a href="', eae_encode_str('mailto:' . config_get( 'webmaster_email' )), '">', eae_encode_str(config_get( 'webmaster_email' )), '</a></address>', "\n";
 	}
 
 	event_signal( 'EVENT_LAYOUT_PAGE_FOOTER' );

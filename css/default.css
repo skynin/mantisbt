@@ -38,7 +38,7 @@ select				{}
 span				{ font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; }
 span.print			{ font-size: 8pt; }
 span.required 		{ font-size: 8pt; color: #bb0000; }
-span.small 			{ font-size: 8pt; font-weight: normal; }
+span.small 			{ font-size: 9pt; font-weight: normal; }
 span.pagetitle		{ font-size: 12pt; font-weight: bold; text-align: center }
 span.bracket-link	{ white-space: nowrap; }
 
@@ -145,17 +145,17 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 .right					{ text-align: right; }
 .floatright				{ float: right; }
 .floatleft				{ float: left; }
-.small					{ font-size: 8pt; }
-.small-normal 			{ font-size: 8pt; font-weight: normal; }
-.small-subprojects		{ font-size: 8pt; width: 200px; }
+.small					{ font-size: 9pt; }
+.small-normal 			{ font-size: 9pt; font-weight: normal; }
+.small-subprojects		{ font-size: 9pt; width: 200px; }
 .bold					{ font-weight: bold; }
-.bold-small				{ font-weight: bold; font-size: 8pt; }
+.bold-small				{ font-weight: bold; font-size: 9pt; }
 .italic					{ font-style: italic; }
-.italic-small			{ font-style: italic; font-size: 8pt; }
+.italic-small			{ font-style: italic; font-size: 9pt; }
 .underline				{ text-decoration: underline; }
-.underline-small		{ text-decoration: underline; font-size: 8pt; }
+.underline-small		{ text-decoration: underline; font-size: 9pt; }
 .strike					{ text-decoration: line-through; }
-.strike-small			{ text-decoration: line-through; font-size: 8pt; }
+.strike-small			{ text-decoration: line-through; font-size: 9pt; }
 .hidden				{ display: none; }
 
 .nowrap
@@ -192,3 +192,7 @@ div.quick-summary-right	{ width: 49%; padding: 2px; text-align: right; float: ri
 
 .progress400				{ position: relative; width: 400px; border: 1px solid #d7d7d7; margin-top: 1em; margin-bottom: 1em; padding: 1px; }
 .progress400 .bar			{ display: block; position: relative; background: #6bba70; text-align: center; font-weight: normal; color: #333; height: 2em; line-height: 2em; }
+
+#history_open td p {
+	margin: 0;
+}

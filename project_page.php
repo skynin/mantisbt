@@ -53,10 +53,10 @@
 	print_bracket_link( $t_view_issues_url, lang_get( 'view_bugs_link' ) );
 
 	# Changelog
-	print_bracket_link( "changelog_page.php?project_id=$f_project_id", lang_get( 'changelog_link' ) );
+	// skynin print_bracket_link( "changelog_page.php?project_id=$f_project_id", lang_get( 'changelog_link' ) );
 
 	# Roadmap
-	print_bracket_link( "roadmap_page.php?project_id=$f_project_id", lang_get( 'roadmap_link' ) );
+	// skynin print_bracket_link( "roadmap_page.php?project_id=$f_project_id", lang_get( 'roadmap_link' ) );
 
 	# Documentation
 	if ( config_get( 'enable_project_documentation' ) == ON ) {

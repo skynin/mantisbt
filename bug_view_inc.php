@@ -315,6 +315,17 @@
 
 		echo '</tr>';
 
+			# Summary
+	if ( $tpl_show_summary ) {
+
+		$tpl_summary = preg_replace('/\d+:\s*/u', '', $tpl_summary);
+
+		echo '<tr ', helper_alternate_class(), '>';
+		echo '<td class="category">', lang_get( 'summary' ), '</td>';
+		echo '<td colspan="5">', $tpl_summary, '</td>';
+		echo '</tr>';
+	}
+
 		# spacer
 		echo '<tr class="spacer"><td colspan="6"></td></tr>';
 	}
@@ -597,14 +608,6 @@
 	#
 	# Bug Details (screen wide fields)
 	#
-
-	# Summary
-	if ( $tpl_show_summary ) {
-		echo '<tr ', helper_alternate_class(), '>';
-		echo '<td class="category">', lang_get( 'summary' ), '</td>';
-		echo '<td colspan="5">', $tpl_summary, '</td>';
-		echo '</tr>';
-	}
 
 	# Description
 	if ( $tpl_show_description ) {

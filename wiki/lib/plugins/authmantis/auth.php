@@ -4,7 +4,7 @@
  *
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  Ventzy <v.kunev@gmail.com>
- * Original integration guide: http://www.mantisbt.org/wiki/doku.php/mantisbt:issue:7075:integration_with_dokuwiki 
+ * Original integration guide: http://www.mantisbt.org/wiki/doku.php/mantisbt:issue:7075:integration_with_dokuwiki
  */
 
 // must be run within Dokuwiki
@@ -42,6 +42,8 @@ class auth_plugin_authmantis extends DokuWiki_Auth_Plugin {
 
         $ValidUser = false;
 
+		if (!function_exists('auth_prepare_username')) return true;
+
         // Manage HTTP authentication with Negotiate protocol enabled
         $user = auth_prepare_username($user);
         $pass = auth_prepare_password($pass);
@@ -59,7 +61,7 @@ class auth_plugin_authmantis extends DokuWiki_Auth_Plugin {
                 $_SERVER['REMOTE_USER'] = $user; // Set the user name (makes things work...)
                 $ValidUser = true; // Report success.
             } else {
-                // Invalid credentials              
+                // Invalid credentials
                 if (!$silent) {
                     msg($this->lang ['badlogin'], -1);
                 }
@@ -82,7 +84,7 @@ class auth_plugin_authmantis extends DokuWiki_Auth_Plugin {
                 $t_project_id = project_get_id_by_name($t_project_name[1]);
                 $t_access_level = access_get_project_level($t_project_id);
                 $t_access_level_string = strtoupper(MantisEnum::getLabel(config_get('access_levels_enum_string'), $t_access_level)); // mantis 1.2.0rc
-                // $t_access_level_string = strtoupper( get_enum_to_string( config_get( 'access_levels_enum_string' ),  $t_access_level ) ); 
+                // $t_access_level_string = strtoupper( get_enum_to_string( config_get( 'access_levels_enum_string' ),  $t_access_level ) );
                 $t_access_level_string_ex = strtoupper($t_project_name[1]) . '_' . $t_access_level_string;
 
                 $USERINFO['grps'] = array($t_access_level_string, $t_access_level_string_ex);

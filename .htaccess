@@ -101,7 +101,7 @@ AddType application/x-font-woff2 .woff2
 #
 <IfModule mod_expires.c>
     ExpiresActive On
-    
+
     ExpiresDefault "access plus 20 minutes"
 
     ExpiresByType image/x-icon "access plus 1 months"
@@ -148,10 +148,10 @@ AddType application/x-font-woff2 .woff2
           Header set Cache-Control "max-age=4, private, must-revalidate"
     </filesMatch>
 
-     Header unset ETag
+    Header unset ETag
     Header unset Last-Modified
-     #FileETag INode MTime Size
-     FileETag MTime Size
+    #FileETag INode MTime Size
+    FileETag MTime Size
 </IfModule>
 
 <ifModule mod_deflate.c>

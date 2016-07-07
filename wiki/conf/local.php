@@ -7,7 +7,7 @@
  * Date: Mon, 04 Apr 2016 11:44:47 +0000
  */
 
-$conf['title'] = 'Skynin';
+$conf['title'] = 'Проектная вики';
 $conf['lang'] = 'ru';
 $conf['license'] = '';
 $conf['recent_days'] = 31;

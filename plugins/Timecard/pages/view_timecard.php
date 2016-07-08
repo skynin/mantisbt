@@ -100,11 +100,12 @@ foreach( $t_all_projects as $t_all_project ){
 		$t_timecard->assigned = user_get_name( $t_row['handler_id'] );
 		$t_timecard->calculate();
 
-		if( 'user0' == $t_timecard->assigned ){ # When bug not assigned don't print user0
-			$t_timecard->assigned = '';
+		if( strpos($t_timecard->assigned, '0', 1) > 0){ # When bug not assigned don't print user0
+			$t_timecard->assigned = '?';
 		}
 
-		$t_timecard->status = MantisEnum::getLabel( config_get( 'status_enum_string' ), $t_row['status'] );
+		$t_timecard->status = get_enum_element( 'status', $t_row['status'] );
+		$status_color = get_status_color( $t_row['status'] );
 		$t_timecard->diff = time_get_diff( $t_timecard->timestamp );
 
 		if( $t_timecard->estimate < 0 ){
@@ -118,7 +119,7 @@ foreach( $t_all_projects as $t_all_project ){
 		echo "<tr class='$row_class'>
 				<td>" , print_bug_link( $t_timecard->bug_id ) , '</td>' . '
 				<td class="max_width">' . $t_timecard->summary . '</td>
-				<td>' . $t_timecard->status . '</td>
+				<td bgcolor="' . $status_color .'">' . $t_timecard->status . '</td>
 				<td>' . $t_timecard->assigned . '</td>';
 
 				if( plugin_config_get( 'use_timecard' ) ){

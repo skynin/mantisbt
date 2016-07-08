@@ -1,0 +1,54 @@
+
+<?php
+# Copyright (C) 2008	John Reese
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+$s_plugin_Timecard_ = '';
+$s_plugin_Timecard_title = 'Timecard';
+$s_plugin_Timecard_description = 'Отслеживание времени для задач в MantisBT.';
+
+$s_plugin_Timecard_hours = ' ч.';
+$s_plugin_Timecard_default_timecard = 'Тип эстимейта по умолчанию';
+$s_plugin_Timecard_timecard = 'Тип эстимейта';
+$s_plugin_Timecard_estimate = 'Эстимейт';
+$s_plugin_Timecard_estimate_zero = '?'; // 'No estimate';
+$s_plugin_Timecard_estimate_display = '%d ч. (%d ч. осталось)';
+$s_plugin_Timecard_estimate_over = '%d ч. (<span class="negative">%d ч. свыше</span>)';
+$s_plugin_Timecard_time_spent = 'Затрачено времени';
+$s_plugin_Timecard_hours_remaining = 'Часов осталось';
+$s_plugin_Timecard_total_remaining = 'Всего часов осталось';
+$s_plugin_Timecard_days_since = 'Дней с момента обновления';
+$s_plugin_Timecard_hours_spent = 'Часов затрачено';
+
+$s_plugin_Timecard_update = 'Обновить';
+$s_plugin_Timecard_log_time_spent = 'Добавить затраченное время';
+
+$s_plugin_Timecard_configuration = 'Configuration';
+$s_plugin_Timecard_view_threshold = 'View Threshold';
+$s_plugin_Timecard_estimate_threshold = 'Estimate Threshold';
+$s_plugin_Timecard_update_threshold = 'Update Threshold';
+$s_plugin_Timecard_manage_threshold = 'Manage Threshold';
+$s_plugin_Timecard_enabled_features = 'Enabled Features';
+$s_plugin_Timecard_use_estimates = 'Time Estimation';
+$s_plugin_Timecard_use_updates = 'Time Spent Updates';
+$s_plugin_Timecard_use_timecard = 'Timecard Strings';
+
+$s_plugin_Timecard_timecard_added = 'Timecard добавлен';
+$s_plugin_Timecard_timecard_updated = 'Timecard обновлен';
+$s_plugin_Timecard_timecard_removed = 'Timecard удален';
+$s_plugin_Timecard_estimate_added = 'Эстимейт добавлен';
+$s_plugin_Timecard_estimate_updated = 'Эстимейт обновлен';
+$s_plugin_Timecard_estimate_removed = 'Эстимейт удален';
+$s_plugin_Timecard_time_spent_added = 'Затраченное время добавлено';
+$s_plugin_Timecard_time_spent_updated = 'Затраченное время обновлено';
+$s_plugin_Timecard_time_spent_removed = 'Затраченное время удалено';
+

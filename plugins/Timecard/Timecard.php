@@ -253,7 +253,7 @@ class TimecardPlugin extends MantisPlugin {
 			$t_columns -= 2;
 		}
 
-		if ( plugin_config_get( 'use_timecard' ) ) {
+		if ( plugin_config_get( 'use_timecard' ) && !empty($t_bug->timecard)) {
 			echo '<td class="category">', plugin_lang_get( 'timecard' ), '</td><td>',
 				string_display_line( $t_bug->timecard ), '</td>';
 			$t_columns -= 2;
@@ -280,7 +280,7 @@ class TimecardPlugin extends MantisPlugin {
 		echo '<br/><form action="', plugin_page( 'log_time' ), '" method="post">',
 			form_security_field( 'plugin_Timecard_log_time' ),
 			'<table class="width50" cellspacing="1" align="center"><tr><td class="form-title">',
-			plugin_lang_get( 'log_time_spent' ), '</td></tr><tr ', helper_alternate_class(), '><td class="category">',
+			/* plugin_lang_get( 'log_time_spent' ) ,*/ '</td></tr><tr ', helper_alternate_class(), '><td class="category">',
 			plugin_lang_get( 'time_spent' ), '</td><td><input type="hidden" name="bug_id" value="', $p_bug_id, '"/>',
 			'<input name="spent" value="0" size="6"/>', plugin_lang_get( 'hours' ), '</td></tr>',
 			'<tr><td class="center" colspan="2"><input type="submit" value="', plugin_lang_get( 'log_time_spent' ), '"/></td></tr>',

@@ -320,6 +320,7 @@ function html_content_type() {
  * @return null
  */
 function html_title( $p_page_title = null ) {
+	$p_page_title = preg_replace('/^0+/u', '', $p_page_title);
 	$t_page_title = string_html_specialchars( $p_page_title );
 	$t_title = string_html_specialchars( config_get( 'window_title' ) );
 	echo "\t", '<title>';

@@ -302,6 +302,7 @@
 		echo '<td>', $tpl_project_name, '</td>';
 
 		# Category
+		$tpl_category = preg_replace('/\[.+\]/u', '', $tpl_category);
 		echo '<td>', $tpl_category, '</td>';
 
 		# View Status
@@ -634,7 +635,7 @@
 	}
 
 	# Tagging
-	if ( $tpl_show_tags ) {
+	if ( $tpl_show_tags && count(tag_bug_get_attached( $p_bug_id ))) {
 		echo '<tr ', helper_alternate_class(), '>';
 		echo '<td class="category">', lang_get( 'tags' ), '</td>';
 		echo '<td colspan="5">';

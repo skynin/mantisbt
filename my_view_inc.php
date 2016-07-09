@@ -301,6 +301,8 @@ echo "($v_start - $v_end / $t_bug_count)";
 	$t_summary = string_display_line_links( $t_bug->summary );
 	$t_last_updated = date( config_get( 'normal_date_format' ), $t_bug->last_updated );
 
+	$bug_recently_updated = $t_bug->last_updated > strtotime( '-' . $t_filter[FILTER_PROPERTY_HIGHLIGHT_CHANGED] . ' hours' );
+
 	# choose color based on status
 	$status_color = get_status_color( $t_bug->status, auth_get_current_user_id(), $t_bug->project_id );
 
@@ -353,23 +355,21 @@ echo "($v_start - $v_end / $t_bug_count)";
 	<?php
 	# -- Summary --?>
 	<td class="left" valign="top" width="100%">
-		<span class="small">
 		<?php
 		 	if( ON == config_get( 'show_bug_project_links' ) && helper_get_current_project() != $t_bug->project_id ) {
 				echo '[', string_display_line( project_get_name( $t_bug->project_id ) ), '] ';
 			}
-			echo $t_summary;
+
+			if ($bug_recently_updated) $t_summary = '<strong>' . $t_summary . '</strong>';
+			print_bug_link( $t_bug->id , false, $t_summary);
 	?>
 		<br />
+		<span class="small">
 		<?php
 	# type project name if viewing 'all projects' or bug is in subproject
-	echo string_display_line( category_full_name( $t_bug->category_id, true, $t_bug->project_id ) );
+	echo string_display_line( category_full_name( $t_bug->category_id, false, $t_bug->project_id ) );
 
-	if( $t_bug->last_updated > strtotime( '-' . $t_filter[FILTER_PROPERTY_HIGHLIGHT_CHANGED] . ' hours' ) ) {
-		echo ' - <b>' . $t_last_updated . '</b>';
-	} else {
-		echo ' - ' . $t_last_updated;
-	}
+	echo ' - <font size="1">' . $t_last_updated . '</font>';
 	?>
 		</span>
 	</td>

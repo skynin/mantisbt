@@ -621,9 +621,10 @@ function string_get_bug_page( $p_action, $p_user_id = null ) {
  * @param int $p_user_id
  * @param bool $p_detail_info
  * @param bool $p_fqdn
+ * @param bool|string $p_link_summary
  * @return string
  */
-function string_get_bug_view_link( $p_bug_id, $p_user_id = null, $p_detail_info = true, $p_fqdn = false ) {
+function string_get_bug_view_link( $p_bug_id, $p_user_id = null, $p_detail_info = true, $p_fqdn = false, $p_link_summary = false ) {
 	if( bug_exists( $p_bug_id ) ) {
 		$t_link = '<a href="';
 		if( $p_fqdn ) {
@@ -642,7 +643,8 @@ function string_get_bug_view_link( $p_bug_id, $p_user_id = null, $p_detail_info 
 				$t_link .= ' class="resolved"';
 			}
 		}
-		$t_link .= '>' . bug_format_id( $p_bug_id ) . '</a>';
+		$link_text = $p_link_summary ? (is_string($p_link_summary) ? $p_link_summary : $t_summary) : bug_format_id( $p_bug_id );
+		$t_link .= '>' . $link_text . '</a>';
 	} else {
 		$t_link = bug_format_id( $p_bug_id );
 	}

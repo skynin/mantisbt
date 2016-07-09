@@ -1188,8 +1188,8 @@ function print_plugin_priority_list( $p_priority ) {
 
 # prints a link to VIEW a bug given an ID
 #  account for the user preference and site override
-function print_bug_link( $p_bug_id, $p_detail_info = true ) {
-	echo string_get_bug_view_link( $p_bug_id, null, $p_detail_info );
+function print_bug_link( $p_bug_id, $p_detail_info = true, $p_link_summary = false) {
+	echo string_get_bug_view_link( $p_bug_id, null, $p_detail_info, false, $p_link_summary );
 }
 
 # formats the priority given the status

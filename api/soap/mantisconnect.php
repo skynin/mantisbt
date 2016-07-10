@@ -6,6 +6,8 @@
 # change the license of future releases.
 # See docs/ folder for more details
 
+ob_start(); // XXX fix echo before someone echo wsdl
+
 set_include_path( '../../library' );
 
 # Path to MantisBT is assumed to be the grand parent directory.  If this is not
@@ -52,6 +54,7 @@ function mci_is_webservice_call()
 	}
 }
 
+$contentBuff = ob_get_clean(); // XXX fix echo before someone echo wsdl
 if ( !mci_is_webservice_call() ) {
 	# if we have a documentation request, do some tidy up to prevent lame bot loops e.g. /mantisconnect.php/mc_enum_etas/mc_project_get_versions/
 	$parts = explode ( 'mantisconnect.php/', strtolower($_SERVER['SCRIPT_NAME'] ), 2 );
@@ -59,7 +62,7 @@ if ( !mci_is_webservice_call() ) {
 		echo 'This is not a SOAP webservice request, for documentation, see ' .  $parts[0] . 'mantisconnect.php';
 		exit();
 	}
-	
+
 	header('Content-Type: text/xml');
 	$wsdl = file_get_contents('mantisconnect.wsdl');
 	$wsdl = str_replace('http://www.mantisbt.org/bugs/api/soap/mantisconnect.php', config_get('path').'api/soap/mantisconnect.php', $wsdl);
@@ -73,9 +76,9 @@ if ( config_get('mc_use_nusoap') ) {
 	// See issue #11868 for details
 	define( 'COMPRESSION_DISABLED', true);
 	ini_set( 'zlib.output_compression', false );
-	
+
 	require_once( 'nusoap/nusoap.php' );
-	
+
 	# create server
 	$l_oServer = new soap_server('mantisconnect.wsdl');
 
@@ -84,18 +87,18 @@ if ( config_get('mc_use_nusoap') ) {
 	$l_oServer->xml_encoding = "UTF-8";
 	$l_oServer->soap_defencoding = "UTF-8";
 	$l_oServer->decode_utf8 = false;
-	
+
 	###
 	###  IMPLEMENTATION
 	###
-	
+
 	# pass incoming (posted) data
 	if ( isset( $HTTP_RAW_POST_DATA ) ) {
 		$t_input = $HTTP_RAW_POST_DATA;
 	} else {
 		$t_input = implode( "\r\n", file( 'php://input' ) );
 	}
-	
+
 	# only include the MantisBT / MantisConnect related files, if the current
 	# request is a webservice call (rather than webservice documentation request,
 	# eg: WSDL).
@@ -109,13 +112,13 @@ if ( config_get('mc_use_nusoap') ) {
 			exit();
 		}
 	}
-	
+
 	# Execute whatever is requested from the webservice.
 	$l_oServer->service( $t_input );
 } else {
-	
+
 	require_once( 'mc_core.php' );
-	
+
 	$server = new SoapServer("mantisconnect.wsdl",
 			array('features' => SOAP_USE_XSI_ARRAY_TYPE + SOAP_SINGLE_ELEMENT_ARRAYS)
 	);

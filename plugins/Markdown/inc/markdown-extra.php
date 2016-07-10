@@ -1313,9 +1313,12 @@ class Markdown_Parser {
 					# Closing strong marker:
 					array_shift($token_stack);
 					$span = array_shift($text_stack);
+					$isMultiLine = $this->detectLongOrMultiLine($span, 6);
 					$span = $this->runSpanGamut($span);
-					if ($underlineToken) $span = "<u>$span</u>";
-					$span = "<strong>$span</strong>";
+
+					if ($isMultiLine) $span = $token . $span . $token;
+					elseif ($underlineToken) $span = "<u>$span</u>";
+					else $span = "<strong>$span</strong>";
 					$text_stack[0] .= $this->hashPart($span);
 					$strong = '';
 				} else {
@@ -1330,15 +1333,11 @@ class Markdown_Parser {
 						# Closing emphasis marker:
 						array_shift($token_stack);
 						$span = array_shift($text_stack);
-
 						$isMultiLine = $this->detectLongOrMultiLine($span);
-
 						$span = $this->runSpanGamut($span);
-
 						if ($isMultiLine || $token{0} == '_') {
 							$span = $token . $span . $token;
 						}
-						//elseif ($token{0} == '_')  $span = "<u>$span</u>";
 						else $span = "<em>$span</em>";
 
 						$text_stack[0] .= $this->hashPart($span);

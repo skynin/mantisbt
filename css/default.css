@@ -18,10 +18,10 @@ address 			{ font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif; fo
 
 pre				{ margin-top: 0px; margin-bottom: 0px; }
 
-a					{}
+a					{color: blue;}
 a:active 			{}
-a:link    			{}
-a:visited 			{}
+a:link    			{color: blue;}
+a:visited 			{ color: blue; }
 a.subtle			{ color: blue; text-decoration: none; }
 a.resolved			{ text-decoration: line-through underline; }
 a > img				{ border: none; }

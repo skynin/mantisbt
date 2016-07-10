@@ -1194,6 +1194,31 @@ class Markdown_Parser {
 		}
 	}
 
+	function detectLongOrMultiLine($text, $maxSpace = 2) {
+		$spaceCode = ord(' ');
+		$countSpace = 0;
+		$isMultiLine = false;
+
+		foreach (str_split($text) as $value) {
+
+			$ordValue = ord($value);
+
+			if ($ordValue == 9) continue; // \t
+
+			if ($ordValue < $spaceCode) {
+				$isMultiLine = true;
+				break;
+			} elseif ($ordValue == $spaceCode) {
+				++$countSpace;
+				if ($countSpace > $maxSpace) {
+					$isMultiLine = true;
+					break;
+				}
+			}
+		}
+		return $isMultiLine;
+	}
+
 	function doItalicsAndBold($text) {
 		$token_stack = array('');
 		$text_stack = array('');
@@ -1227,7 +1252,7 @@ class Markdown_Parser {
 				break;
 			}
 
-			$underlineToken = $token{0} == '_';
+			$underlineToken = $token{0} == '_' && $token{1} == '_';
 
 			$token_len = strlen($token);
 			if ($tree_char_em) {
@@ -1305,9 +1330,17 @@ class Markdown_Parser {
 						# Closing emphasis marker:
 						array_shift($token_stack);
 						$span = array_shift($text_stack);
+
+						$isMultiLine = $this->detectLongOrMultiLine($span);
+
 						$span = $this->runSpanGamut($span);
-						if ($underlineToken) $span = "<u>$span</u>";
-						$span = "<em>$span</em>";
+
+						if ($isMultiLine || $token{0} == '_') {
+							$span = $token . $span . $token;
+						}
+						//elseif ($token{0} == '_')  $span = "<u>$span</u>";
+						else $span = "<em>$span</em>";
+
 						$text_stack[0] .= $this->hashPart($span);
 						$em = '';
 					} else {
